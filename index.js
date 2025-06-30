@@ -21,9 +21,9 @@ let songLyrics = [];
 
     setInterval(async () => {
       try {
-        playerctlIntegration();
+        //playerctlIntegration();
         //spotifyIntegration();
-        //windowsIntegration("");
+        windowsIntegration("");
       } catch (err) {
         console.error("loop error: ", err.message);
       }
@@ -122,12 +122,12 @@ async function windowsIntegration(player) {
   //import and get media
   const startDelay = new Date();
   const { SMTCMonitor } = await import("@coooookies/windows-smtc-monitor");
-
-  if (player !== "") {
-    var session = SMTCMonitor.getCurrentMediaSession();
-  } else {
-    var session = SMTCMonitor.getMediaSessionByAppId(player);
-  }
+  const session = SMTCMonitor.getCurrentMediaSession();
+  // if (player !== "") {
+  //   var session = SMTCMonitor.getCurrentMediaSession();
+  // } else {
+  //   var session = SMTCMonitor.getMediaSessionByAppId(player);
+  // }
   const endDelay = new Date();
 
   const delay = (endDelay - startDelay) / 1000;
@@ -142,7 +142,7 @@ async function windowsIntegration(player) {
     songLyrics = await getLyrics(session.media.title, session.media.artist);
     var lyricEnd = new Date();
     lyricDelay += (lyricEnd - lyricStart) / 1000;
-    console.log(`Now playing: ${playerctlNowPlaying.title}`);
+    console.log(`Now playing: ${session.media.title}`);
   }
 
   if (session.playback.playbackStatus == 4) {

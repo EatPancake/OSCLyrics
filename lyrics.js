@@ -61,7 +61,7 @@ export async function getLyricsByTime(lyrics, currentTime, time) {
     currentTimeDiff < time + 1 &&
     currentLyric >= 1
   ) {
-    startOffset += lyricTimeDiff(nextTimeDiff - currentTimeDiff);
+    startOffset += lyricTimeDiff - (nextTimeDiff - currentTimeDiff);
     //return lyrics[currentLyric - 1].text + "\n";
   } else if (currentTimeDiff < 1.5 && currentLyric >= 1) {
     startOffset += lyricTimeDiff;
