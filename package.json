@@ -1,0 +1,19 @@
+{
+  "name": "spotifyauth-lyrics",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@coooookies/windows-smtc-monitor": "^1.0.12",
+    "dotenv": "^17.0.0",
+    "lrclib-api": "^2.0.0",
+    "open": "^10.1.2",
+    "osc": "^2.4.5"
+  }
+}
