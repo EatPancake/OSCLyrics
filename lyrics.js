@@ -25,7 +25,8 @@ export async function getLyricsByTime(lyrics, currentTime, time) {
   }
 
   const endTime = currentTime + time;
-  var startOffset = 0.5;
+  var startOffset = 0;
+  const endOffset = 0.5;
   var currentLyric = -1;
 
   for (const line of lyrics) {
@@ -57,21 +58,31 @@ export async function getLyricsByTime(lyrics, currentTime, time) {
   }
 
   if (
-    lyricTimeDiff > time - 1.5 &&
+    lyricTimeDiff > time - 0.5 &&
     currentTimeDiff < time + 1 &&
     currentLyric >= 1
   ) {
     startOffset += lyricTimeDiff - (nextTimeDiff - currentTimeDiff);
     //return lyrics[currentLyric - 1].text + "\n";
-  } else if (currentTimeDiff < 1.5 && currentLyric >= 1) {
+  } else if (currentTimeDiff < 1 && currentLyric >= 1) {
     startOffset += lyricTimeDiff;
   }
-  return lyrics
+
+  const cutLyrics = lyrics
     .filter(
       (line) =>
         line.startTime >= currentTime - startOffset &&
-        line.startTime <= endTime,
+        line.startTime <= endTime + endOffset,
     )
     .map((line) => line.text)
-    .join("\n");
+    .join("\n-");
+
+    let output
+    if(cutLyrics.length > 139){
+      output = cutLyrics.substring(0,136) + "...";
+    } else {
+      output = cutLyrics;
+    }
+
+  return output;
 }

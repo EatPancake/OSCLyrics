@@ -27,7 +27,7 @@ let songLyrics = [];
       } catch (err) {
         console.error("loop error: ", err.message);
       }
-    }, 5000);
+    }, 3000);
   } catch (err) {
     console.error("Startup error:", err.message);
     process.exit(1);
@@ -181,7 +181,7 @@ async function createOutput(
     );
 
     if (currentLyrics.length) {
-      const lyricString = ` 🎤 ${currentLyrics}`;
+      const lyricString = ` 🎤 -${currentLyrics}`;
 
       console.log(lyricString + "\n");
       osc ? sendChatbox(lyricString, 0) : null;
@@ -195,7 +195,7 @@ async function createOutput(
         currentSec = "0" + currentSec.toString();
       }
       if (endSec < 10) {
-        currentSec = "0" + currentSec.toString();
+        endSec = "0" + currentSec.toString();
       }
 
       const noLyricString = ` 🎶 ${title} - ${artist}\n ${currentMinute}:${currentSec}|${endMinute}:${endSec}`;
