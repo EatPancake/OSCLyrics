@@ -195,7 +195,7 @@ async function createOutput(
         currentSec = "0" + currentSec.toString();
       }
       if (endSec < 10) {
-        endSec = "0" + currentSec.toString();
+        endSec = "0" + endSec.toString();
       }
 
       const noLyricString = ` 🎶 ${title} - ${artist}\n ${currentMinute}:${currentSec}|${endMinute}:${endSec}`;
